@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wasim@Store - أفضل الشنط الجلد الفاخرة</title>
+<meta name="description" content="Wasim@Store يقدم أفضل الشنط الجلد الفاخرة في القاهرة – تسوق شنط جملة وقطاعي وعدد محدود من التصاميم المميزة.">
+<meta name="keywords" content="شنط، شنط جلد، شنط نسائية، شنط رجالية، تسوق، القاهرة، باب الشعرية">
+<meta name="author" content="Eng. Mohamed Mohamed Refeay">
+<style>
+body { background:#000; color:#ffd700; font-family:Arial,sans-serif; margin:0; padding:0; }
+header { background:#000; border-bottom:2px solid #ffd700; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; position:sticky; top:0; z-index:100; }
+header h1 { margin:0; font-size:26px; }
+header nav a { margin-left:15px; text-decoration:none; color:#ffd700; cursor:pointer; }
+section { padding:50px 30px; max-width:1200px; margin:auto; display:none; }
+.hero { background:url('images/bag1.jpg') center/cover no-repeat; height:350px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-shadow:2px 2px 8px #000; display:flex; }
+.hero button { margin-top:20px; padding:12px 30px; background-color:#ffd700; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:18px; }
+.card { display:flex; flex-direction:row; align-items:center; background:#111; padding:15px; border:2px solid #ffd700; border-radius:12px; margin-bottom:15px; }
+.card img { width:180px; height:180px; object-fit:cover; margin-right:20px; border-radius:10px; border:2px solid #ffd700; }
+.card-content { text-align:right; flex:1; }
+button, input { margin-top:10px; padding:8px 15px; border-radius:6px; border:none; background:#ffd700; color:#000; cursor:pointer; }
+.delete-btn { background:red; color:#fff; margin-top:5px; }
+.backBtn { margin-top:15px; padding:8px 20px; font-size:16px; }
+.contact-links { margin-top:20px; }
+.contact-links a { display:block; margin:10px 0; color:#ffd700; text-decoration:none; }
+footer { background:#111; padding:20px; margin-top:50px; border-top:2px solid #ffd700; font-size:18px; text-align:center; }
+</style>
+</head>
+<body>
+
+<header>
+<div>
+<h1>Wasim@Store</h1>
+<div class="management">إدارة / عبد الرحمن نادر</div>
+<div class="info">📞 01091232057 – 📍 شارع الطمار – باب الشعرية – القاهرة</div>
+</div>
+<nav>
+<a id="navHome">الرئيسية</a>
+<a id="navProducts">تسوق الآن</a>
+<a id="navManage">إضافة منتجات</a>
+<a id="navContact">تواصل معنا</a>
+</nav>
+</header>
+
+<section id="home">
+<div class="hero">
+<h1>أفضل الشنط الجلد الفاخرة</h1>
+<button id="shopNowBtn">تسوق الآن</button>
+</div>
+<div class="contact-links">
+<a href="tel:01091232057">📞 اتصال مباشر: 01091232057</a>
+<a href="https://wa.me/201091232057">💬 واتساب</a>
+<a href="https://facebook.com">📘 فيسبوك</a>
+</div>
+</section>
+
+<section id="products">
+<h2>جميع الشنط</h2>
+<button class="backBtn" id="backHomeFromProducts">العودة للصفحة الرئيسية</button>
+<div id="allProducts"></div>
+<div class="contact-links">
+<a href="tel:01091232057">📞 اتصال مباشر: 01091232057</a>
+<a href="https://wa.me/201091232057">💬 واتساب</a>
+<a href="https://facebook.com">📘 فيسبوك</a>
+</div>
+</section>
+
+<section id="manage">
+<h2>إضافة شنط جديدة</h2>
+<form id="productForm">
+<input type="text" id="productName" placeholder="اسم المنتج" required>
+<input type="number" id="productPrice" placeholder="سعر الجملة" required>
+<input type="number" id="productRetailPrice" placeholder="سعر القطاعي" required>
+<input type="number" id="productQuantity" placeholder="عدد المنتجات" required>
+<input type="file" id="productImage" accept="image/*" required>
+<img id="preview" class="preview-img" style="display:none;">
+<button type="submit">أضف الشنطة</button>
+</form>
+</section>
+
+<section id="contact">
+<h2>تواصل معنا</h2>
+<div class="contact-links">
+<a href="tel:01091232057">📞 اتصال مباشر: 01091232057</a>
+<a href="https://wa.me/201091232057">💬 واتساب</a>
+<a href="https://facebook.com">📘 فيسبوك</a>
+<p>📍 العنوان: شارع الطمار – باب الشعريه – القاهرة</p>
+</div>
+</section>
+
+<footer>
+<p> Eng: Mohamed Mohamed Refeay</p>
+</footer>
+
+<script>
+const home = document.getElementById('home');
+const productsSec = document.getElementById('products');
+const manageSec = document.getElementById('manage');
+const contactSec = document.getElementById('contact');
+
+function showSection(section){
+  home.style.display='none';
+  productsSec.style.display='none';
+  manageSec.style.display='none';
+  contactSec.style.display='none';
+  section.style.display='block';
+}
+
+document.getElementById('navHome').addEventListener('click', ()=>showSection(home));
+document.getElementById('navProducts').addEventListener('click', ()=>showSection(productsSec));
+document.getElementById('navManage').addEventListener('click', ()=>showSection(manageSec));
+document.getElementById('navContact').addEventListener('click', ()=>showSection(contactSec));
+
+document.getElementById('shopNowBtn').addEventListener('click', ()=>showSection(productsSec));
+document.getElementById('backHomeFromProducts').addEventListener('click', ()=>showSection(home));
+
+let products = JSON.parse(localStorage.getItem('products')) || [];
+function displayProducts(){
+  const container = document.getElementById('allProducts');
+  container.innerHTML='';
+  products.forEach((p,index)=>{
+    const card = document.createElement('div');
+    card.className='card';
+    card.innerHTML=`
+      <img src="${p.image}" alt="${p.name}">
+      <div class="card-content">
+        <h3>${p.name}</h3>
+        <p>سعر الجملة: ${p.price} جنيه</p>
+        <p>سعر القطاعي: ${p.retailPrice} جنيه</p>
+        <p>العدد المتاح: ${p.quantity}</p>
+        <button onclick="window.location.href='https://wa.me/201091232057?text=اهلا، اريد شراء ${p.name}'">شراء</button>
+        <button class="delete-btn" onclick="deleteProduct(${index})">حذف</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+document.getElementById('productImage').addEventListener('change', function(){
+  const file = this.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(){
+      const preview = document.getElementById('preview');
+      preview.src = reader.result;
+      preview.style.display='block';
+    }
+    reader.readAsDataURL(file);
+  }
+});
+
+document.getElementById('productForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('productName').value.trim();
+  const price = parseInt(document.getElementById('productPrice').value);
+  const retailPrice = parseInt(document.getElementById('productRetailPrice').value);
+  const quantity = parseInt(document.getElementById('productQuantity').value);
+  const file = document.getElementById('productImage').files[0];
+
+  if(!name || isNaN(price) || isNaN(retailPrice) || isNaN(quantity) || !file){
+    alert('الرجاء تعبئة جميع الحقول واختيار صورة.');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(){
+    const imageData = reader.result;
+    products.push({name, price, retailPrice, quantity, image:imageData});
+    localStorage.setItem('products', JSON.stringify(products));
+    displayProducts();
+    document.getElementById('productForm').reset();
+    document.getElementById('preview').style.display='none';
+    alert('تم إضافة المنتج بنجاح');
+  }
+  reader.readAsDataURL(file);
+});
+
+function deleteProduct(index){
+  if(confirm('هل أنت متأكد من حذف هذا المنتج؟')){
+    products.splice(index,1);
+    localStorage.setItem('products', JSON.stringify(products));
+    displayProducts();
+  }
+}
+
+displayProducts();
+showSection(home);
+</script>
+
+</body>
+</html>
