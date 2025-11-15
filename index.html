@@ -3,189 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wasim@Store - أفضل الشنط الجلد الفاخرة</title>
-<meta name="description" content="Wasim@Store يقدم أفضل الشنط الجلد الفاخرة في القاهرة – تسوق شنط جملة وقطاعي وعدد محدود من التصاميم المميزة.">
-<meta name="keywords" content="شنط، شنط جلد، شنط نسائية، شنط رجالية، تسوق، القاهرة، باب الشعرية">
-<meta name="author" content="Eng. Mohamed Mohamed Refeay">
+<title>Wasim Store</title>
 <style>
-body { background:#000; color:#ffd700; font-family:Arial,sans-serif; margin:0; padding:0; }
-header { background:#000; border-bottom:2px solid #ffd700; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; position:sticky; top:0; z-index:100; }
-header h1 { margin:0; font-size:26px; }
-header nav a { margin-left:15px; text-decoration:none; color:#ffd700; cursor:pointer; }
-section { padding:50px 30px; max-width:1200px; margin:auto; display:none; }
-.hero { background:url('images/bag1.jpg') center/cover no-repeat; height:350px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-shadow:2px 2px 8px #000; display:flex; }
-.hero button { margin-top:20px; padding:12px 30px; background-color:#ffd700; color:#000; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:18px; }
-.card { display:flex; flex-direction:row; align-items:center; background:#111; padding:15px; border:2px solid #ffd700; border-radius:12px; margin-bottom:15px; }
-.card img { width:180px; height:180px; object-fit:cover; margin-right:20px; border-radius:10px; border:2px solid #ffd700; }
-.card-content { text-align:right; flex:1; }
-button, input { margin-top:10px; padding:8px 15px; border-radius:6px; border:none; background:#ffd700; color:#000; cursor:pointer; }
-.delete-btn { background:red; color:#fff; margin-top:5px; }
-.backBtn { margin-top:15px; padding:8px 20px; font-size:16px; }
-.contact-links { margin-top:20px; }
-.contact-links a { display:block; margin:10px 0; color:#ffd700; text-decoration:none; }
-footer { background:#111; padding:20px; margin-top:50px; border-top:2px solid #ffd700; font-size:18px; text-align:center; }
+body { margin:0; font-family:Arial; background:#000; color:white; text-align:center; }
+.header{background:#111;padding:20px; display:flex; justify-content:space-between; align-items:center;}
+.header-left{color:gold; text-align:left;}
+.header-left div{font-size:22px; font-weight:bold; line-height:1.3;}
+.header-left .contact{font-size:18px; margin-top:5px; color:gold;}
+.nav-links{display:flex; gap:10px;}
+.btn, .back-btn, .action-btn{display:inline-block;padding:10px 20px;background:gold;color:black;font-weight:bold;border-radius:8px;text-decoration:none;cursor:pointer;}
+.products, .manage-page{display:none;padding:20px;background:#111;text-align:right;}
+.product-card{background:#222;padding:15px;margin:15px auto;width:90%;max-width:350px;border-radius:10px;text-align:right;}
+.product-card img{width:100%;border-radius:10px;}
+.price{font-size:18px;color:gold;}
+.input-field{width:90%;max-width:250px;padding:8px;margin:5px 0;border-radius:6px;border:none;}
+.footer{margin-top:30px;font-size:14px;}
+.delete-btn{background:red;color:white;margin-top:5px;margin-right:5px;}
+.hero{background:url('https://images.unsplash.com/photo-1600185365926-598d33f635f6?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat; height:350px; display:flex; justify-content:center; align-items:center; color:white; font-size:28px; font-weight:bold;}
 </style>
 </head>
 <body>
 
-<header>
-<div>
-<h1>Wasim@Store</h1>
-<div class="management">إدارة / عبد الرحمن نادر</div>
-<div class="info">📞 01091232057 – 📍 شارع الطمار – باب الشعرية – القاهرة</div>
+<div class="header">
+    <div class="header-left">
+        <div>Wasim@Store</div>
+        <div>الإدارة: عبدالرحمن نادر</div>
+        <div class="contact">التواصل: 01091232057</div>
+        <div class="contact">العنوان: الطمار، باب الشعريه، القاهره</div>
+    </div>
+    <div class="nav-links">
+        <a class="btn" id="homeBtn">الرئيسية</a>
+        <a class="btn" id="productsBtn">المنتجات</a>
+        <a class="btn" id="adminBtn">لوحة التحكم</a>
+    </div>
 </div>
-<nav>
-<a id="navHome">الرئيسية</a>
-<a id="navProducts">تسوق الآن</a>
-<a id="navManage">إضافة منتجات</a>
-<a id="navContact">تواصل معنا</a>
-</nav>
-</header>
 
-<section id="home">
 <div class="hero">
-<h1>أفضل الشنط الجلد الفاخرة</h1>
-<button id="shopNowBtn">تسوق الآن</button>
+<a class="btn" id="shopNowBtn">تسوق الآن</a>
 </div>
-<div class="contact-links">
-<a href="tel:01091232057">📞 اتصال مباشر: 01091232057</a>
-<a href="https://wa.me/201091232057">💬 واتساب</a>
-<a href="https://facebook.com">📘 فيسبوك</a>
+
+<div class="products" id="productsSection">
+<h1>جميع الشنط</h1>
+<div id="productsContainer"></div>
+<a class="back-btn" id="backBtn">العودة للصفحة الرئيسية</a>
 </div>
-</section>
 
-<section id="products">
-<h2>جميع الشنط</h2>
-<button class="backBtn" id="backHomeFromProducts">العودة للصفحة الرئيسية</button>
-<div id="allProducts"></div>
-<div class="contact-links">
-<a href="tel:01091232057">📞 اتصال مباشر: 01091232057</a>
-<a href="https://wa.me/201091232057">💬 واتساب</a>
-<a href="https://facebook.com">📘 فيسبوك</a>
+<div class="manage-page" id="managePage">
+<h2>لوحة التحكم</h2>
+<input type="text" id="nameInput" placeholder="اسم المنتج" class="input-field"><br>
+<input type="number" id="priceInput" placeholder="سعر الجملة" class="input-field"><br>
+<input type="number" id="retailInput" placeholder="سعر القطاعي" class="input-field"><br>
+<input type="number" id="quantityInput" placeholder="العدد المتاح" class="input-field"><br>
+<input type="text" id="colorsInput" placeholder="الألوان المتاحة (افصل بفاصلة ,)" class="input-field"><br>
+<input type="file" id="imageFileInput" class="input-field"><br>
+<input type="hidden" id="editIndex">
+<button class="action-btn" id="saveProductBtn">حفظ</button>
+<a class="back-btn" id="backFromManage">العودة للصفحة الرئيسية</a>
+
+<h3>المنتجات الحالية</h3>
+<div id="manageContainer"></div>
 </div>
-</section>
 
-<section id="manage">
-<h2>إضافة شنط جديدة</h2>
-<form id="productForm">
-<input type="text" id="productName" placeholder="اسم المنتج" required>
-<input type="number" id="productPrice" placeholder="سعر الجملة" required>
-<input type="number" id="productRetailPrice" placeholder="سعر القطاعي" required>
-<input type="number" id="productQuantity" placeholder="عدد المنتجات" required>
-<input type="file" id="productImage" accept="image/*" required>
-<img id="preview" class="preview-img" style="display:none;">
-<button type="submit">أضف الشنطة</button>
-</form>
-</section>
-
-<section id="contact">
-<h2>تواصل معنا</h2>
-<div class="contact-links">
-<a href="tel:01091232057">📞 اتصال مباشر: 01091232057</a>
-<a href="https://wa.me/201091232057">💬 واتساب</a>
-<a href="https://facebook.com">📘 فيسبوك</a>
-<p>📍 العنوان: شارع الطمار – باب الشعريه – القاهرة</p>
+<div class="footer">
+Eng/ Mohamed Mohamed Refeay<br>
+<hr style="border:1px solid gold;width:80%;margin:10px auto;">
+<a href="https://wa.me/201091232057" style="color:gold;text-decoration:none;font-size:18px;">تواصل واتساب</a>
 </div>
-</section>
-
-<footer>
-<p> Eng: Mohamed Mohamed Refeay</p>
-</footer>
 
 <script>
-const home = document.getElementById('home');
-const productsSec = document.getElementById('products');
-const manageSec = document.getElementById('manage');
-const contactSec = document.getElementById('contact');
+let products = [];
 
-function showSection(section){
-  home.style.display='none';
-  productsSec.style.display='none';
-  manageSec.style.display='none';
-  contactSec.style.display='none';
-  section.style.display='block';
+// تحميل المنتجات من JSON
+function loadProducts(){
+    fetch('products.json')
+    .then(res => res.json())
+    .then(data => {
+        products = data;
+        renderProducts();
+    });
 }
 
-document.getElementById('navHome').addEventListener('click', ()=>showSection(home));
-document.getElementById('navProducts').addEventListener('click', ()=>showSection(productsSec));
-document.getElementById('navManage').addEventListener('click', ()=>showSection(manageSec));
-document.getElementById('navContact').addEventListener('click', ()=>showSection(contactSec));
-
-document.getElementById('shopNowBtn').addEventListener('click', ()=>showSection(productsSec));
-document.getElementById('backHomeFromProducts').addEventListener('click', ()=>showSection(home));
-
-let products = JSON.parse(localStorage.getItem('products')) || [];
-function displayProducts(){
-  const container = document.getElementById('allProducts');
-  container.innerHTML='';
-  products.forEach((p,index)=>{
-    const card = document.createElement('div');
-    card.className='card';
-    card.innerHTML=`
-      <img src="${p.image}" alt="${p.name}">
-      <div class="card-content">
-        <h3>${p.name}</h3>
-        <p>سعر الجملة: ${p.price} جنيه</p>
-        <p>سعر القطاعي: ${p.retailPrice} جنيه</p>
-        <p>العدد المتاح: ${p.quantity}</p>
-        <button onclick="window.location.href='https://wa.me/201091232057?text=اهلا، اريد شراء ${p.name}'">شراء</button>
-        <button class="delete-btn" onclick="deleteProduct(${index})">حذف</button>
-      </div>
-    `;
-    container.appendChild(card);
-  });
+function renderProducts(){
+    const container=document.getElementById('productsContainer');
+    container.innerHTML='';
+    products.forEach(p=>{
+        const div=document.createElement('div');
+        div.className='product-card';
+        div.innerHTML=`<img src="${p.image}"><h3>${p.name}</h3>
+        <div class="price">سعر الجملة: ${p.price} جنيه</div>
+        <div class="price">سعر القطاعي: ${p.retail} جنيه</div>
+        <div>الألوان: ${p.colors}</div>
+        <div class="price">العدد المتاح: ${p.quantity}</div>
+        <a href="https://wa.me/201091232057?text=اهلا، اريد شراء ${p.name}" target="_blank" class="back-btn">شراء عبر واتساب</a>`;
+        container.appendChild(div);
+    });
 }
 
-document.getElementById('productImage').addEventListener('change', function(){
-  const file = this.files[0];
-  if(file){
-    const reader = new FileReader();
-    reader.onload = function(){
-      const preview = document.getElementById('preview');
-      preview.src = reader.result;
-      preview.style.display='block';
+// لوحة التحكم
+const adminPassword="1234-qwer";
+
+function showManage(){
+    let pass=prompt("ادخل كلمة السر للوصول للوحة التحكم:");
+    if(pass!==adminPassword){ alert("كلمة السر خاطئة!"); return; }
+    managePage.style.display='block';
+    productsSection.style.display='none';
+    shopNowBtn.style.display='none';
+    renderManage();
+}
+
+function renderManage(){
+    const manageContainer=document.getElementById('manageContainer');
+    manageContainer.innerHTML='';
+    products.forEach((p,i)=>{
+        const div=document.createElement('div');
+        div.className='product-card';
+        div.innerHTML=`<img src="${p.image}"><h3>${p.name}</h3>
+        <div class="price">سعر الجملة: ${p.price} جنيه</div>
+        <div class="price">سعر القطاعي: ${p.retail} جنيه</div>
+        <div>الألوان: ${p.colors}</div>
+        <div class="price">العدد المتاح: ${p.quantity}</div>
+        <button class="delete-btn" onclick="deleteProduct(${i})">حذف</button>
+        <button class="action-btn" onclick="editProduct(${i})">تعديل</button>`;
+        manageContainer.appendChild(div);
+    });
+}
+
+function saveProduct(){
+    const name=nameInput.value.trim();
+    const price=parseInt(priceInput.value);
+    const retail=parseInt(retailInput.value);
+    const quantity=parseInt(quantityInput.value);
+    const colors=colorsInput.value.trim();
+    const file=imageFileInput.files[0];
+    const index=editIndex.value;
+
+    if(!name || !price || !retail || !quantity || !colors){ alert("املأ جميع الحقول"); return; }
+
+    const reader=new FileReader();
+    reader.onload=function(e){
+        const image=e.target.result;
+        if(index===''){
+            products.push({name, price, retail, quantity, colors, image});
+        }else{
+            products[index]={name, price, retail, quantity, colors, image};
+        }
+
+        fetch('save_products.php',{
+            method:'POST',
+            headers:{ 'Content-Type':'application/json' },
+            body: JSON.stringify(products)
+        }).then(()=>{ loadProducts(); renderManage(); });
+
+        nameInput.value=''; priceInput.value=''; retailInput.value=''; colorsInput.value=''; imageFileInput.value=''; quantityInput.value=''; editIndex.value='';
     }
-    reader.readAsDataURL(file);
-  }
-});
-
-document.getElementById('productForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const name = document.getElementById('productName').value.trim();
-  const price = parseInt(document.getElementById('productPrice').value);
-  const retailPrice = parseInt(document.getElementById('productRetailPrice').value);
-  const quantity = parseInt(document.getElementById('productQuantity').value);
-  const file = document.getElementById('productImage').files[0];
-
-  if(!name || isNaN(price) || isNaN(retailPrice) || isNaN(quantity) || !file){
-    alert('الرجاء تعبئة جميع الحقول واختيار صورة.');
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = function(){
-    const imageData = reader.result;
-    products.push({name, price, retailPrice, quantity, image:imageData});
-    localStorage.setItem('products', JSON.stringify(products));
-    displayProducts();
-    document.getElementById('productForm').reset();
-    document.getElementById('preview').style.display='none';
-    alert('تم إضافة المنتج بنجاح');
-  }
-  reader.readAsDataURL(file);
-});
-
-function deleteProduct(index){
-  if(confirm('هل أنت متأكد من حذف هذا المنتج؟')){
-    products.splice(index,1);
-    localStorage.setItem('products', JSON.stringify(products));
-    displayProducts();
-  }
+    if(file){ reader.readAsDataURL(file); }else{ alert("اختر صورة"); }
 }
 
-displayProducts();
-showSection(home);
-</script>
+function editProduct(i){
+    const p=products[i];
+    nameInput.value=p.name;
+    priceInput.value=p.price;
+    retailInput.value=p.retail;
+    colorsInput.value=p.colors;
+    quantityInput.value=p.quantity;
+    editIndex.value=i;
+}
 
+function deleteProduct(i){
+    if(confirm("هل أنت متأكد من حذف هذا المنتج؟")){
+        products.splice(i,1);
+        fetch('save_products.php',{
+            method:'POST',
+            headers:{ 'Content-Type':'application/json' },
+            body: JSON.stringify(products)
+        }).then(()=>{ loadProducts(); renderManage(); });
+    }
+}
+
+const shopNowBtn=document.getElementById('shopNowBtn');
+const homeBtn=document.getElementById('homeBtn');
+const productsBtn=document.getElementById('productsBtn');
+const adminBtn=document.getElementById('adminBtn');
+
+shopNowBtn.addEventListener('click',()=>{ productsSection.style.display='block'; shopNowBtn.style.display='none'; renderProducts(); });
+productsBtn.addEventListener('click',()=>{ productsSection.style.display='block'; shopNowBtn.style.display='none'; renderProducts(); });
+adminBtn.addEventListener('click',showManage);
+homeBtn.addEventListener('click',()=>{
+    productsSection.style.display='none';
+    managePage.style.display='none';
+    shopNowBtn.style.display='inline-block';
+});
+document.getElementById('backBtn').addEventListener('click',()=>{
+    productsSection.style.display='none';
+    shopNowBtn.style.display='inline-block';
+});
+document.getElementById('backFromManage').addEventListener('click',()=>{
+    managePage.style.display='none';
+    shopNowBtn.style.display='inline-block';
+});
+
+loadProducts();
+</script>
 </body>
 </html>
