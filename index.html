@@ -26,10 +26,10 @@ body { margin:0; font-family:Arial; background:#000; color:white; text-align:cen
 
 <div class="header">
     <div class="header-left">
-        <div>Wasim@Store</div>
+        <div>Wasim Store</div>
         <div>الإدارة: عبدالرحمن نادر</div>
+        <div>العنوان: الطمار. باب الشعريه. القاهره</div>
         <div class="contact">التواصل: 01091232057</div>
-        <div class="contact">العنوان: الطمار، باب الشعريه، القاهره</div>
     </div>
     <div class="nav-links">
         <a class="btn" id="homeBtn">الرئيسية</a>
@@ -42,12 +42,14 @@ body { margin:0; font-family:Arial; background:#000; color:white; text-align:cen
 <a class="btn" id="shopNowBtn">تسوق الآن</a>
 </div>
 
+<!-- المنتجات -->
 <div class="products" id="productsSection">
 <h1>جميع الشنط</h1>
 <div id="productsContainer"></div>
 <a class="back-btn" id="backBtn">العودة للصفحة الرئيسية</a>
 </div>
 
+<!-- لوحة التحكم -->
 <div class="manage-page" id="managePage">
 <h2>لوحة التحكم</h2>
 <input type="text" id="nameInput" placeholder="اسم المنتج" class="input-field"><br>
@@ -71,21 +73,41 @@ Eng/ Mohamed Mohamed Refeay<br>
 </div>
 
 <script>
-let products = [];
+let products = [
+    {name:"شنطة جلد فاخرة", price:150, retail:200, quantity:10, colors:"أسود, بني", image:"https://images.unsplash.com/photo-1618005198919-bd9ecf08f5cd?auto=format&fit=crop&w=500&q=80"},
+    {name:"شنطة ظهر كاجوال", price:180, retail:220, quantity:5, colors:"أزرق, رمادي", image:"https://images.unsplash.com/photo-1600185365926-598d33f635f6?auto=format&fit=crop&w=500&q=80"}
+];
 
-// تحميل المنتجات من JSON
-function loadProducts(){
-    fetch('products.json')
-    .then(res => res.json())
-    .then(data => {
-        products = data;
-        renderProducts();
-    });
+const shopNowBtn=document.getElementById('shopNowBtn');
+const homeBtn=document.getElementById('homeBtn');
+const productsBtn=document.getElementById('productsBtn');
+const adminBtn=document.getElementById('adminBtn');
+
+const productsSection=document.getElementById('productsSection');
+const productsContainer=document.getElementById('productsContainer');
+
+const managePage=document.getElementById('managePage');
+const nameInput=document.getElementById('nameInput');
+const priceInput=document.getElementById('priceInput');
+const retailInput=document.getElementById('retailInput');
+const quantityInput=document.getElementById('quantityInput');
+const colorsInput=document.getElementById('colorsInput');
+const imageFileInput=document.getElementById('imageFileInput');
+const editIndex=document.getElementById('editIndex');
+const saveProductBtn=document.getElementById('saveProductBtn');
+const manageContainer=document.getElementById('manageContainer');
+
+const adminPassword="1234-qwer";
+
+function showProducts(){
+    productsSection.style.display='block';
+    managePage.style.display='none';
+    shopNowBtn.style.display='none';
+    renderProducts();
 }
 
 function renderProducts(){
-    const container=document.getElementById('productsContainer');
-    container.innerHTML='';
+    productsContainer.innerHTML='';
     products.forEach(p=>{
         const div=document.createElement('div');
         div.className='product-card';
@@ -95,12 +117,9 @@ function renderProducts(){
         <div>الألوان: ${p.colors}</div>
         <div class="price">العدد المتاح: ${p.quantity}</div>
         <a href="https://wa.me/201091232057?text=اهلا، اريد شراء ${p.name}" target="_blank" class="back-btn">شراء عبر واتساب</a>`;
-        container.appendChild(div);
+        productsContainer.appendChild(div);
     });
 }
-
-// لوحة التحكم
-const adminPassword="1234-qwer";
 
 function showManage(){
     let pass=prompt("ادخل كلمة السر للوصول للوحة التحكم:");
@@ -112,7 +131,6 @@ function showManage(){
 }
 
 function renderManage(){
-    const manageContainer=document.getElementById('manageContainer');
     manageContainer.innerHTML='';
     products.forEach((p,i)=>{
         const div=document.createElement('div');
@@ -128,7 +146,7 @@ function renderManage(){
     });
 }
 
-function saveProduct(){
+saveProductBtn.addEventListener('click',()=>{
     const name=nameInput.value.trim();
     const price=parseInt(priceInput.value);
     const retail=parseInt(retailInput.value);
@@ -137,7 +155,7 @@ function saveProduct(){
     const file=imageFileInput.files[0];
     const index=editIndex.value;
 
-    if(!name || !price || !retail || !quantity || !colors){ alert("املأ جميع الحقول"); return; }
+    if(!name || !price || !retail || !colors || !quantity){ alert("املأ جميع الحقول"); return; }
 
     const reader=new FileReader();
     reader.onload=function(e){
@@ -147,17 +165,21 @@ function saveProduct(){
         }else{
             products[index]={name, price, retail, quantity, colors, image};
         }
-
-        fetch('save_products.php',{
-            method:'POST',
-            headers:{ 'Content-Type':'application/json' },
-            body: JSON.stringify(products)
-        }).then(()=>{ loadProducts(); renderManage(); });
-
         nameInput.value=''; priceInput.value=''; retailInput.value=''; colorsInput.value=''; imageFileInput.value=''; quantityInput.value=''; editIndex.value='';
+        renderManage();
+        renderProducts();
     }
-    if(file){ reader.readAsDataURL(file); }else{ alert("اختر صورة"); }
-}
+    if(file){ reader.readAsDataURL(file); } else {
+        if(index===''){ alert("اختر صورة"); return; }
+        else{
+            const image=products[index].image;
+            products[index]={name, price, retail, quantity, colors, image};
+            nameInput.value=''; priceInput.value=''; retailInput.value=''; colorsInput.value=''; imageFileInput.value=''; quantityInput.value=''; editIndex.value='';
+            renderManage();
+            renderProducts();
+        }
+    }
+});
 
 function editProduct(i){
     const p=products[i];
@@ -172,21 +194,13 @@ function editProduct(i){
 function deleteProduct(i){
     if(confirm("هل أنت متأكد من حذف هذا المنتج؟")){
         products.splice(i,1);
-        fetch('save_products.php',{
-            method:'POST',
-            headers:{ 'Content-Type':'application/json' },
-            body: JSON.stringify(products)
-        }).then(()=>{ loadProducts(); renderManage(); });
+        renderManage();
+        renderProducts();
     }
 }
 
-const shopNowBtn=document.getElementById('shopNowBtn');
-const homeBtn=document.getElementById('homeBtn');
-const productsBtn=document.getElementById('productsBtn');
-const adminBtn=document.getElementById('adminBtn');
-
-shopNowBtn.addEventListener('click',()=>{ productsSection.style.display='block'; shopNowBtn.style.display='none'; renderProducts(); });
-productsBtn.addEventListener('click',()=>{ productsSection.style.display='block'; shopNowBtn.style.display='none'; renderProducts(); });
+shopNowBtn.addEventListener('click',showProducts);
+productsBtn.addEventListener('click',showProducts);
 adminBtn.addEventListener('click',showManage);
 homeBtn.addEventListener('click',()=>{
     productsSection.style.display='none';
@@ -201,8 +215,8 @@ document.getElementById('backFromManage').addEventListener('click',()=>{
     managePage.style.display='none';
     shopNowBtn.style.display='inline-block';
 });
-
-loadProducts();
+renderProducts();
 </script>
+
 </body>
 </html>
